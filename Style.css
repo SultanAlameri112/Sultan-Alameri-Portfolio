@@ -1,0 +1,554 @@
+:root{
+  --bg:#0b0f17;
+  --card: rgba(255,255,255,.06);
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.65);
+  --border: rgba(255,255,255,.12);
+  --primary:#a855f7;
+  --shadow: 0 18px 55px rgba(0,0,0,.35);
+}
+
+body.light{
+  --bg:#f7f7fb;
+  --card: rgba(0,0,0,.04);
+  --text: rgba(0,0,0,.9);
+  --muted: rgba(0,0,0,.6);
+  --border: rgba(0,0,0,.12);
+  --primary:#7c3aed;
+  --shadow: 0 18px 55px rgba(0,0,0,.12);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.bg{
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(900px 450px at 15% 10%, rgba(168,85,247,.25), transparent 60%),
+    radial-gradient(800px 420px at 80% 15%, rgba(59,130,246,.18), transparent 55%),
+    radial-gradient(1000px 520px at 50% 95%, rgba(16,185,129,.10), transparent 60%);
+  pointer-events:none;
+  z-index:-1;
+}
+
+.container{max-width:1100px;margin:0 auto;padding:0 18px}
+
+/* NAV (مثل البنت: شريط ناعم/محاذاة) */
+.nav{
+  position: sticky; top:0; z-index:10;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.10));
+}
+body.light .nav{
+  background: linear-gradient(to bottom, rgba(255,255,255,.9), rgba(255,255,255,.5));
+}
+
+.nav-inner{
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.logo{
+  text-decoration:none;
+  color: var(--text);
+  font-weight: 800;
+  letter-spacing:.2px;
+}
+
+.links{display:flex; gap:14px}
+.links a{
+  color: var(--muted);
+  text-decoration:none;
+  padding:8px 10px;
+  border-radius:999px;
+}
+.links a:hover{background:var(--card); color:var(--text)}
+
+.nav-actions{display:flex; gap:10px; align-items:center}
+.iconbtn, .pillbtn{
+  border:1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  padding:8px 12px;
+  border-radius: 999px;
+  cursor:pointer;
+}
+.pillbtn{font-weight:700}
+.mobile{display:none}
+
+.mobile-menu{
+  display:none;
+  padding:12px 0 18px;
+  border-top:1px solid var(--border);
+}
+.mobile-menu a{
+  display:block;
+  text-decoration:none;
+  color: var(--muted);
+  padding:10px 0;
+}
+.mobile-menu a:hover{color: var(--text)}
+
+/* HERO layout مثلها */
+.hero{
+  display:grid;
+  grid-template-columns: 380px 1fr;
+  gap:18px;
+  padding: 28px 0 10px;
+  align-items:start;
+}
+
+.left{display:flex; flex-direction:column; gap:14px}
+.photo-card{
+  border:1px solid var(--border);
+  background: var(--card);
+  border-radius: 22px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+.photo-card img{
+  width:30%;
+  aspect-ratio: 1 / 1;
+  border-radius: 15px;
+  object-fit: cover;
+  display:block;
+}
+
+.contact-card{
+  border:1px dashed var(--border);
+  background: rgba(255,255,255,.03);
+  border-radius: 15px;
+  padding: 16px;
+}
+body.light .contact-card{background: rgba(0,0,0,.02)}
+.contact-card h3{margin:0 0 10px; font-size:16px}
+.contact-row{display:flex; gap:10px; flex-wrap:wrap; margin:10px 0}
+.cbtn{
+  text-decoration:none;
+  color: var(--text);
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.04);
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-size: 13px;
+}
+body.light .cbtn{background: rgba(0,0,0,.03)}
+
+.right{display:flex; flex-direction:column; gap:14px}
+
+.hello{margin:0; color: var(--muted)}
+h1{margin:0; font-size: 34px; line-height:1.2}
+.accent{color: var(--primary)}
+.subtitle{margin:8px 0 0; color: var(--muted)}
+
+.aboutbox{
+  border:1px solid rgba(147,197,253,.45);
+  background: rgba(59,130,246,.06);
+  border-radius: 18px;
+  padding: 14px;
+}
+.abouthead{
+  display:flex; justify-content:flex-start;
+  font-weight: 800;
+  margin-bottom:8px;
+}
+
+.chips-block h3{margin:0 0 8px; font-size: 15px}
+.chips{display:flex; gap:10px; flex-wrap:wrap}
+.chip{
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.05);
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+body.light .chip{background: rgba(0,0,0,.03)}
+.chip.soft{background: rgba(168,85,247,.10)}
+
+.divider{
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(168,85,247,.55), transparent);
+  margin: 16px auto;
+  border-radius: 999px;
+}
+
+/* Sections */
+.section{padding: 18px 0 28px}
+.section-head h2{margin:0 0 10px; font-size: 26px}
+.muted{color: var(--muted)}
+.card{
+  border:1px solid var(--border);
+  background: var(--card);
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.grid2{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:14px;
+}
+
+.social{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+.sbtn{
+  text-decoration:none;
+  color: var(--text);
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.04);
+  padding: 10px 12px;
+  border-radius: 14px;
+}
+body.light .sbtn{background: rgba(0,0,0,.03)}
+
+.input{
+  width:100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  outline:none;
+  margin: 8px 0;
+}
+body.light .input{background: rgba(0,0,0,.03)}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 11px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  text-decoration:none;
+  cursor:pointer;
+}
+.btn.primary{
+  background: linear-gradient(135deg, rgba(168,85,247,.95), rgba(124,58,237,.9));
+  border-color: transparent;
+}
+.btn.ghost{background: transparent}
+.btn.small{padding:9px 12px; border-radius: 12px}
+
+/* Projects */
+.projects{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:14px;
+}
+.pcard{
+  border:1px solid var(--border);
+  background: var(--card);
+  border-radius: 22px;
+  overflow:hidden;
+  box-shadow: var(--shadow);
+  transform: translateY(0);
+  transition: .25s ease;
+}
+.pcard:hover{transform: translateY(-8px)}
+.thumb{height:170px; overflow:hidden}
+.thumb img{width:100%; height:100%; object-fit:cover; transform: scale(1.02); transition: .35s ease}
+.pcard:hover .thumb img{transform: scale(1.08)}
+.pbody{padding:16px}
+.pbody h3{margin:0 0 8px}
+.pbody p{margin:0 0 12px; color: var(--muted); font-size: 14px}
+.pactions{display:flex; gap:10px; flex-wrap:wrap}
+
+.footer{
+  border-top:1px solid var(--border);
+  padding: 22px 0;
+  color: var(--muted);
+}
+
+/* Reveal animation */
+.reveal{
+  opacity: 0;
+  transform: translateY(14px);
+  transition: .6s ease;
+}
+.reveal.show{opacity: 1; transform: translateY(0);}
+
+/* Responsive */
+@media (max-width: 980px){
+  .hero{grid-template-columns: 1fr}
+  .projects{grid-template-columns: repeat(2, 1fr)}
+}
+@media (max-width: 680px){
+  .links{display:none}
+  .mobile{display:inline-flex}
+  .grid2{grid-template-columns:1fr}
+  .projects{grid-template-columns:1fr}
+  h1{font-size: 28px}
+}
+
+/* ===== FIX Education cards width & alignment ===== */
+
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.edu-card {
+  padding: 35px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (max-width: 1000px) {
+  .edu-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   EDUCATION + CERTIFICATIONS + CV (3 cards row) - FINAL
+   ضع هذا الكود في آخر ملف style.css
+   ========================================================= */
+
+/* خلّ القسم عريض ومتوازن */
+#education.container.section,
+#education.section,
+#education {
+  max-width: 1250px !important;
+  width: min(1250px, calc(100% - 48px)) !important;
+  margin: 60px auto !important;
+}
+
+/* عنوان القسم */
+#education .section-head h2 {
+  margin-bottom: 18px;
+}
+
+/* شبكة 3 أعمدة: Education | Certifications | CV */
+#education .edu-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(320px, 1fr)) !important;
+  gap: 28px !important;
+  align-items: stretch !important;
+  margin-top: 22px !important;
+}
+
+/* الكروت نفسها */
+#education .edu-card {
+  width: 100% !important;
+  padding: 34px !important;
+  min-height: 260px !important;
+  border-radius: 22px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(6px) !important;
+
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease !important;
+}
+
+/* Hover (إحساس Premium) */
+#education .edu-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 0 26px rgba(120, 0, 255, 0.25) !important;
+  border-color: rgba(170, 120, 255, 0.35) !important;
+}
+
+/* العناوين */
+#education .edu-card h3 {
+  font-size: 1.35rem !important;
+  margin: 0 0 14px 0 !important;
+  line-height: 1.2 !important;
+}
+
+/* النص */
+#education .edu-card p {
+  font-size: 1.05rem !important;
+  line-height: 1.55 !important;
+  margin: 6px 0 !important;
+}
+
+/* الليست */
+#education .edu-card ul {
+  margin: 10px 0 0 18px !important;
+  padding: 0 !important;
+}
+
+#education .edu-card li {
+  font-size: 1.03rem !important;
+  line-height: 1.55 !important;
+  margin: 4px 0 !important;
+}
+
+/* CV Card زر أكبر ويجي تحت */
+/* CV Card Center Fix */
+
+.cv-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* عمودي */
+  align-items: center;       /* أفقي */
+  text-align: center;
+  gap: 20px;                 /* مسافة بين العنوان والزر */
+  min-height: 260px;
+}
+
+.cv-card h3 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.cv-card .btn {
+  margin-top: 10px;
+}
+
+
+/* CV card تمييز بسيط */
+#education .cv-card {
+  border-color: rgba(170, 120, 255, 0.25) !important;
+}
+
+/* على الشاشات المتوسطة: خليهم 2 ثم 1 */
+@media (max-width: 1100px) {
+  #education .edu-grid {
+    grid-template-columns: repeat(2, minmax(320px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  #education .edu-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  #education .edu-card {
+    min-height: auto !important;
+  }
+}
+
+/* ===== CV BUTTON (Green Glow Style) ===== */
+.cv-btn{
+  --green: #1BFD9C;
+
+  font-size: 15px;
+  padding: 0.7em 2.7em;
+  letter-spacing: 0.06em;
+  position: relative;
+  font-family: inherit;
+  border-radius: 0.6em;
+  overflow: hidden;
+  transition: all 0.3s;
+  line-height: 1.4em;
+
+  border: 2px solid var(--green);
+
+  background: linear-gradient(
+    to right,
+    rgba(27,253,156,0.1) 1%,
+    transparent 40%,
+    transparent 60%,
+    rgba(27,253,156,0.1) 100%
+  );
+
+  color: var(--green);
+
+  box-shadow:
+    inset 0 0 10px rgba(27,253,156,0.4),
+    0 0 9px 3px rgba(27,253,156,0.1);
+
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover */
+.cv-btn:hover{
+  color: #82ffc9;
+
+  box-shadow:
+    inset 0 0 10px rgba(27,253,156,0.6),
+    0 0 9px 3px rgba(27,253,156,0.2);
+}
+
+/* Light sweep animation */
+.cv-btn::before{
+  content: "";
+  position: absolute;
+  left: -4em;
+  width: 4em;
+  height: 100%;
+  top: 0;
+  transition: transform .4s ease-in-out;
+
+  background: linear-gradient(
+    to right,
+    transparent 1%,
+    rgba(27,253,156,0.1) 40%,
+    rgba(27,253,156,0.1) 60%,
+    transparent 100%
+  );
+}
+
+.cv-btn:hover::before{
+  transform: translateX(15em);
+}
+
+
+
+
+/* ===== Quick Contact Form ===== */
+
+.quick-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.quick-form input,
+.quick-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+/* Focus effect */
+.quick-form input:focus,
+.quick-form textarea:focus {
+  border-color: #1bfd9c;
+  box-shadow: 0 0 10px rgba(27,253,156,0.3);
+}
+
+/* Textarea resize */
+.quick-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Status text */
+#formStatus {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
