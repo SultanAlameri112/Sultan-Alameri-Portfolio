@@ -16,12 +16,6 @@
     <div class="container nav-inner">
       <a class="logo" href="#top" >Sultan Alameri</a>
 
-      <nav class="links">
-        <a href="#home" data-i18n="nav_home">Home</a>
-        <a href="#projects" data-i18n="nav_projects">Projects</a>
-        <a href="#cv" data-i18n="nav_cv">CV</a>
-        <a href="#contact" data-i18n="nav_contact">Contact</a>
-      </nav>
 
       <div class="nav-actions">
         <button id="langBtn" class="pillbtn" type="button">AR</button>
@@ -51,17 +45,17 @@
           <h3 data-i18n="contact_me">Contact Me</h3>
 
           <div class="contact-row">
-            <a class="cbtn" href="https://linkedin.com/in/USERNAME" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a class="cbtn" href="https://github.com/USERNAME" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="cbtn" href="https://linkedin.com/in/sultanalameri10" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="cbtn" href="https://github.com/SultanAlameri112" target="_blank" rel="noreferrer">GitHub</a>
           </div>
 
           <div class="contact-row">
             <a class="cbtn" href="mailto:you@email.com">sultan.alameri10@hotmail.com</a>
-            <a class="cbtn" href="tel:+971501959511" data-i18n="0501959511_btn">0501959511</a>
+            <a class="cbtn" href="tel:+971501959511" data-i18n="0501959511_btn">+971501959511</a>
           </div>
 
           <div class="contact-row">
-            <a class="cbtn" href="#cv" data-i18n="cv_btn">View CV</a>
+            <a id="viewCvBtn" class="cbtn" href="assets/cv.pdf" data-i18n="cv_btn" aria-haspopup="dialog" aria-controls="cvModal">View CV</a>
           </div>
         </div>
       </aside>
@@ -85,7 +79,11 @@
             <span data-i18n="about_title">About</span>
           </div>
           <p>
-            Short bio goes here. Focus on what you do, your style, and the value you bring.
+            IT and Cybersecurity student with hands on experience in technical support,
+            hardware and software troubleshooting, networking, and virtualization. Building practical skills
+            through a personal homelab using MikroTik, UniFi, Proxmox, Windows, and Linux. Interested
+            in IT support, networking, cybersecurity, and data center operations, with strong
+            troubleshooting and problem solving skills
           </p>
         </div>
 
@@ -93,21 +91,25 @@
         <div class="chips-block reveal">
           <h3 data-i18n="prog_langs">Programming Languages</h3>
           <div class="chips">
+            <span class="chip">Python</span>
             <span class="chip">HTML</span>
             <span class="chip">CSS</span>
             <span class="chip">JavaScript</span>
-            <span class="chip">Python</span>
           </div>
         </div>
 
         <!-- Chips: Skills -->
         <div class="chips-block reveal">
           <h3 data-i18n="skills">Skills</h3>
-          <div class="chips">
-            <span class="chip soft">UI/UX Design</span>
-            <span class="chip soft">Figma</span>
-            <span class="chip soft">Responsive UI</span>
-            <span class="chip soft">Git/GitHub</span>
+          <div class="skills-row">
+            <div class="chips">
+              <span class="chip soft">IT Support</span>
+              <span class="chip soft">Networking</span>
+              <span class="chip soft">Active Directory</span>
+              <span class="chip soft">Linux</span>
+              <span class="chip soft">VLans</span>
+            </div>
+            <a id="cv" href="assets/cv.pdf" target="_blank" class="cv-btn home-cv-btn">Download CV</a>
           </div>
         </div>
       </section>
@@ -121,37 +123,42 @@
       <span class="edu-icon"></span>
       <h3>Education</h3>
     </div>
-    <p>Bachelor Degree in CyberSecurity ( Purdue University &#x1F1FA;&#x1F1F8; )
+    <p>B.S in CyberSecurity ( Purdue University &#x1F1FA;&#x1F1F8; ) | GPA: 3.92
     </p>
     <p>Applied Tehcnology High School (Abu Dhabi)</p>
   </div>
 
   <div class="card reveal edu-card">
     <div class="edu-header">
-      <span class="edu-icon">🏆</span>
       <h3>Certifications</h3>
-    </div>
-    <ul>
+      </div>
+      <ul>
       <li>CompTIA A+</li>
       <li>CompTIA Security+</li>
-      <li>CCNA</li>
-      <li>Python Programming Projects</li>
+      <li>CCNA (In Progress) </li>
     </ul>
   </div>
 
-  <div class="card reveal edu-card cv-card">
-  <h3>CV</h3>
-
-   <a href="assets/cv.pdf" target="_blank" class="cv-btn">
-  Download CV
-</a>
-
-
+  <div class="card reveal edu-card experience-card">
+    <div class="edu-header">
+      <h3>Experience</h3>
+    </div>
+    <p>
+      <strong>Information Technology Trainee</strong><br>
+      Abu Dhabi Municipality<br>
+      Feb 2021 – May 2021
+    </p>
+    <ul>
+      <li>Provided remote and in-person IT support to users</li>
+      <li>Diagnosed and resolved hardware and software issues</li>
+      <li>Troubleshot IP configuration and network connectivity issues</li>
+      <li>Installed and configured computer hardware and software</li>
+    </ul>
+  </div>
   </div>
 </section>
 
 
-</div>
 </section>
 
 
@@ -166,7 +173,7 @@
       </div>
 
       <div class="projects">
-        <article class="pcard reveal">
+        <article id="project1-card" class="pcard reveal">
           <div class="thumb">
             <img src="assets/project1.png" alt= />
           </div>
@@ -174,35 +181,37 @@
             <h3>Password Strength Analyzer </h3>
             <p > A Python based cybersecurity project that evaluates password strength and provides improvement suggestions. </p>
             <div class="pactions">
+              <button id="project1DetailsBtn" class="btn small ghost" type="button" aria-haspopup="dialog" aria-controls="project1Modal" data-i18n="details">Details</button>
               <a class="btn small ghost" href="https://github.com/SultanAlameri112/password-strength-analyzer" target="_blank" rel="noreferrer" data-i18n="live">Live/Repo</a>
             </div>
           </div>
         </article>
 
-        <article class="pcard reveal">
+        <article id="project2-card" class="pcard reveal">
           <div class="thumb">
-            <img src="assets/project2.jpg" alt="Project 2" />
+            <img src="assets/network-toolkit.png" alt="Network Troubleshooting Toolkit running a Ping Test on Windows" />
           </div>
           <div class="pbody">
-            <h3>Project Title</h3>
-            <p data-i18n="proj_desc">Short description of the project and your role.</p>
+            <h3>Network Troubleshooting Toolkit</h3>
+            <p>A Python-based desktop toolkit that simplifies common network troubleshooting tasks such as IP configuration, ping tests, DNS lookup, traceroute, and connectivity checks.</p>
             <div class="pactions">
-              <a class="btn small" href="#" target="_blank" rel="noreferrer" data-i18n="details">Details</a>
-              <a class="btn small ghost" href="#" target="_blank" rel="noreferrer" data-i18n="live">Live/Repo</a>
+              <button id="project2DetailsBtn" class="btn small ghost" type="button" aria-haspopup="dialog" aria-controls="project2Modal" data-i18n="details">Details</button>
+              <a class="btn small ghost" href="https://github.com/SultanAlameri112/Network-Troubleshooting-Toolkit" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
             </div>
           </div>
         </article>
 
-        <article class="pcard reveal">
+        <article id="project3-card" class="pcard reveal">
           <div class="thumb">
-            <img src="assets/project3.jpg" alt="Project 3" />
+            <img src="assets/sentix-coming-soon.svg" alt="Sultan Sentix Security Audit Tool — under development" />
           </div>
           <div class="pbody">
-            <h3>Project Title</h3>
-            <p data-i18n="proj_desc">Short description of the project and your role.</p>
+            <h3>Sultan Sentix Security Audit Tool</h3>
+            <p>A Windows security auditing tool designed to inspect system configuration, installed applications, services, and basic security settings, then generate a structured security report.</p>
+            <span class="project-status development">Under Development</span>
             <div class="pactions">
-              <a class="btn small" href="#" target="_blank" rel="noreferrer" data-i18n="details">Details</a>
-              <a class="btn small ghost" href="#" target="_blank" rel="noreferrer" data-i18n="live">Live/Repo</a>
+              <button class="btn small" type="button" disabled data-i18n="details">Details</button>
+              <button class="btn small ghost" type="button" disabled>Coming Soon</button>
             </div>
           </div>
         </article>
@@ -234,7 +243,7 @@
           GitHub
         </a>
 
-        <a class="sbtn" href="https://linkedin.com/in/USERNAME" target="_blank" rel="noreferrer">
+        <a class="sbtn" href="https://linkedin.com/in/sultanalameri10" target="_blank" rel="noreferrer">
           LinkedIn
         </a>
       </div>
@@ -291,6 +300,85 @@
       </div>
     </footer>
   </main>
+
+  <dialog id="cvModal" class="cv-modal" aria-labelledby="cvModalTitle">
+    <div class="cv-modal-header">
+      <h2 id="cvModalTitle" data-i18n="cv_title">CV</h2>
+      <button id="closeCvBtn" class="cv-modal-close" type="button" aria-label="Close CV preview" autofocus>×</button>
+    </div>
+    <iframe id="cvViewer" class="cv-modal-viewer" title="Sultan Alameri CV" data-src="assets/cv.pdf"></iframe>
+  </dialog>
+
+  <dialog id="project1Modal" class="cv-modal project-modal" aria-labelledby="project1ModalTitle">
+    <div class="cv-modal-header">
+      <h2 id="project1ModalTitle">Password Strength Analyzer</h2>
+      <button id="closeProject1Btn" class="cv-modal-close" type="button" aria-label="Close project details" autofocus>×</button>
+    </div>
+    <div class="project-modal-body">
+      <p>A Python-based cybersecurity project that evaluates password strength and provides suggestions to help improve weak passwords.</p>
+      <h3>Features</h3>
+      <ul class="project-feature-list">
+        <li>Checks password length</li>
+        <li>Checks uppercase and lowercase letters</li>
+        <li>Checks numbers</li>
+        <li>Checks special characters</li>
+        <li>Provides password strength feedback</li>
+        <li>Gives suggestions for improving weak passwords</li>
+      </ul>
+      <h3>Technologies</h3>
+      <ul class="project-feature-list">
+        <li>Python</li>
+      </ul>
+      <h3>What I Learned</h3>
+      <ul class="project-feature-list">
+        <li>Basic Python programming</li>
+        <li>Password security concepts</li>
+        <li>Input validation</li>
+        <li>Conditional logic</li>
+        <li>Creating simple cybersecurity tools</li>
+      </ul>
+    </div>
+  </dialog>
+
+  <dialog id="project2Modal" class="cv-modal project-modal" aria-labelledby="project2ModalTitle">
+    <div class="cv-modal-header">
+      <h2 id="project2ModalTitle">Network Troubleshooting Toolkit</h2>
+      <button id="closeProject2Btn" class="cv-modal-close" type="button" aria-label="Close project details" autofocus>×</button>
+    </div>
+    <div class="project-modal-body">
+      <p>A Python-based Windows desktop toolkit that simplifies common network troubleshooting tasks from one interface.</p>
+      <img class="project-preview" src="assets/network-toolkit.png" alt="Actual Network Troubleshooting Toolkit desktop interface" />
+      <h3>Features</h3>
+      <ul class="project-feature-list">
+        <li>IP Configuration</li>
+        <li>Ping Test</li>
+        <li>DNS Lookup</li>
+        <li>Traceroute</li>
+        <li>Internet Connectivity Check</li>
+        <li>Copy command output</li>
+        <li>Save results to a text file</li>
+        <li>Clear output</li>
+      </ul>
+      <h3>Technologies</h3>
+      <ul class="project-feature-list">
+        <li>Python</li>
+        <li>CustomTkinter</li>
+        <li>Tkinter</li>
+        <li>Subprocess</li>
+        <li>Threading</li>
+        <li>Windows networking commands</li>
+      </ul>
+      <h3>What I Learned</h3>
+      <ul class="project-feature-list">
+        <li>Python desktop application development</li>
+        <li>Network troubleshooting</li>
+        <li>Running Windows commands from Python</li>
+        <li>Input validation</li>
+        <li>Error handling</li>
+        <li>Multithreading</li>
+      </ul>
+    </div>
+  </dialog>
 
   <script src="app.js"></script>
 </body>

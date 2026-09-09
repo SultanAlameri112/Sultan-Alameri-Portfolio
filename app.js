@@ -169,3 +169,124 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// ===== CV preview modal =====
+(() => {
+  const viewCvBtn = document.getElementById("viewCvBtn");
+  const cvModal = document.getElementById("cvModal");
+  const closeCvBtn = document.getElementById("closeCvBtn");
+  const cvViewer = document.getElementById("cvViewer");
+  if (!viewCvBtn || !cvModal || !closeCvBtn || !cvViewer) return;
+
+  let savedScroll = null;
+  let savedBodyStyle = null;
+
+  viewCvBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (cvModal.open) return;
+
+    savedScroll = { x: window.scrollX, y: window.scrollY };
+    savedBodyStyle = document.body.getAttribute("style");
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const bodyPadding = parseFloat(getComputedStyle(document.body).paddingRight) || 0;
+
+    document.documentElement.classList.add("cv-modal-open");
+    Object.assign(document.body.style, {
+      position: "fixed",
+      top: `-${savedScroll.y}px`,
+      left: `-${savedScroll.x}px`,
+      width: "100%",
+      overflow: "hidden",
+      paddingRight: `${bodyPadding + scrollbarWidth}px`
+    });
+
+    if (!cvViewer.getAttribute("src")) {
+      cvViewer.src = `${cvViewer.dataset.src}#view=FitH&navpanes=0`;
+    }
+    cvModal.showModal();
+  });
+
+  closeCvBtn.addEventListener("click", () => cvModal.close());
+
+  cvViewer.addEventListener("load", () => {
+    try {
+      cvViewer.contentWindow.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && cvModal.open) {
+          event.preventDefault();
+          cvModal.close();
+        }
+      });
+    } catch {
+      // Some browsers isolate their built-in PDF viewer from the page.
+    }
+  });
+
+  cvModal.addEventListener("click", (event) => {
+    if (event.target !== cvModal) return;
+    const bounds = cvModal.getBoundingClientRect();
+    if (
+      event.clientX < bounds.left || event.clientX > bounds.right ||
+      event.clientY < bounds.top || event.clientY > bounds.bottom
+    ) {
+      cvModal.close();
+    }
+  });
+
+  // Native dialog cancellation handles Escape; every dismissal restores the page.
+  cvModal.addEventListener("close", () => {
+    document.documentElement.classList.remove("cv-modal-open");
+    if (savedBodyStyle === null) {
+      document.body.removeAttribute("style");
+    } else {
+      document.body.setAttribute("style", savedBodyStyle);
+    }
+    if (savedScroll) {
+      window.scrollTo({ left: savedScroll.x, top: savedScroll.y, behavior: "instant" });
+      savedScroll = null;
+    }
+    viewCvBtn.focus({ preventScroll: true });
+  });
+})();
+
+// ===== Project details =====
+[1, 2].forEach((projectId) => {
+  const trigger = document.getElementById(`project${projectId}DetailsBtn`);
+  const dialog = document.getElementById(`project${projectId}Modal`);
+  const close = document.getElementById(`closeProject${projectId}Btn`);
+  if (!trigger || !dialog || !close) return;
+  let previousBodyStyle = null;
+  let previousScroll = null;
+
+  trigger.addEventListener("click", () => {
+    if (dialog.open) return;
+    previousScroll = { x: window.scrollX, y: window.scrollY };
+    previousBodyStyle = document.body.getAttribute("style");
+    const scrollbar = window.innerWidth - document.documentElement.clientWidth;
+    const padding = parseFloat(getComputedStyle(document.body).paddingRight) || 0;
+    document.documentElement.classList.add("project-modal-open");
+    Object.assign(document.body.style, {
+      position: "fixed", top: `-${previousScroll.y}px`, left: `-${previousScroll.x}px`,
+      width: "100%", overflow: "hidden", paddingRight: `${padding + scrollbar}px`
+    });
+    dialog.showModal();
+  });
+
+  close.addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (event) => {
+    if (event.target !== dialog) return;
+    const box = dialog.getBoundingClientRect();
+    if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) {
+      dialog.close();
+    }
+  });
+  dialog.addEventListener("close", () => {
+    document.documentElement.classList.remove("project-modal-open");
+    if (previousBodyStyle === null) document.body.removeAttribute("style");
+    else document.body.setAttribute("style", previousBodyStyle);
+    if (previousScroll) {
+      window.scrollTo({ left: previousScroll.x, top: previousScroll.y, behavior: "instant" });
+      previousScroll = null;
+    }
+    trigger.focus({ preventScroll: true });
+  });
+});
